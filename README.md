@@ -20,4 +20,4 @@ pip install git+https://github.com/guiwitz/nd2reader.git@master#egg=nd2reader -U
 
 ## Authors
 
-This package has been created by Guillaume Witz, Micorscopy Imaging Center and Science IT Support, Bern University.
+This package has been created by Guillaume Witz, Micorscopy Imaging Center and Science IT Support, Bern University in collaboration with Jakobus van Unen, Pertz lab, Institute of Cell Biology, Bern University.
