@@ -1,0 +1,482 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>splitmask package &#8212; splitmask</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Interactive plotting" href="../../notebooks/interactive.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">splitmask</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../README.html">
+   splitmask
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Documentation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../notebooks/intensity_by_sector.html">
+   Measure intensity vs. time in angular or concentric regions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../notebooks/multi_roi.html">
+   Multiple rois
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../notebooks/interactive.html">
+   Interactive plotting
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   splitmask package
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/docs/source/splitmask.rst"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.rst</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/guiwitz/splitmask"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submodules">
+   Submodules
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-splitmask.splitmask">
+   splitmask.splitmask module
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#module-splitmask">
+   Module contents
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <section id="splitmask-package">
+<h1>splitmask package<a class="headerlink" href="#splitmask-package" title="Permalink to this headline">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-splitmask.splitmask">
+<span id="splitmask-splitmask-module"></span><h2>splitmask.splitmask module<a class="headerlink" href="#module-splitmask.splitmask" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="splitmask.splitmask.create_concentric_mask">
+<span class="sig-prename descclassname"><span class="pre">splitmask.splitmask.</span></span><span class="sig-name descname"><span class="pre">create_concentric_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">im_dims</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sector_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_sectors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splitmask.splitmask.create_concentric_mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a labelled mask of disk split in concentric rings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>center</strong> (<em>list</em><em> or </em><em>array</em>) – 2d position of center of disk(s)</p></li>
+<li><p><strong>im_dims</strong> (<em>list</em>) – image size</p></li>
+<li><p><strong>sector_width</strong> (<em>int</em>) – ring thickness</p></li>
+<li><p><strong>num_sectors</strong> (<em>int</em>) – number of rings to define</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>concentric_labels</strong> – labelled image with concentric rings
+each plane [x,:,:] corresponds to a roi</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>3d array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splitmask.splitmask.create_sector_mask">
+<span class="sig-prename descclassname"><span class="pre">splitmask.splitmask.</span></span><span class="sig-name descname"><span class="pre">create_sector_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">center</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">im_dims</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_rad</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ring_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splitmask.splitmask.create_sector_mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a labelled mask of a disk or ring split in angular sectors. If radius is
+provided, the mask is a ring otherwise a disk.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>center</strong> (<em>list</em>) – 2d position of center of disk</p></li>
+<li><p><strong>im_dims</strong> (<em>list</em>) – image size</p></li>
+<li><p><strong>angular_width</strong> (<em>int</em>) – size of angular sectors in degrees</p></li>
+<li><p><strong>max_rad</strong> (<em>float</em>) – disk radius</p></li>
+<li><p><strong>ring_width</strong> (<em>int</em>) – ring width</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>sector_labels</strong> – labelled image with concentric rings
+each plane [x,:,:] corresponds to a roi</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>3d array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splitmask.splitmask.get_cmap_labels">
+<span class="sig-prename descclassname"><span class="pre">splitmask.splitmask.</span></span><span class="sig-name descname"><span class="pre">get_cmap_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">im_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cool'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splitmask.splitmask.get_cmap_labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create list of L colors where L is the number of labels in the image</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splitmask.splitmask.get_roi_cm">
+<span class="sig-prename descclassname"><span class="pre">splitmask.splitmask.</span></span><span class="sig-name descname"><span class="pre">get_roi_cm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">roi_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roi_im</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splitmask.splitmask.get_roi_cm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the center of mass of a roi defined as a single label in an image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>roi_path</strong> (<em>str</em>) – path to roi image</p></li>
+<li><p><strong>= 2d array</strong> (<em>roi_im</em>) – image containing roi</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>cm</strong> – center of mass of roi</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>1d array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splitmask.splitmask.measure_intensities">
+<span class="sig-prename descclassname"><span class="pre">splitmask.splitmask.</span></span><span class="sig-name descname"><span class="pre">measure_intensities</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">im_labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splitmask.splitmask.measure_intensities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Measure average intensity in a time-lapse image using a labelled image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time_image</strong> (<em>array</em><em> or </em><em>microfilm.dataset</em>) – should be a 3D TxHxW numpy array or any microfilm.dataset object</p></li>
+<li><p><strong>im_labels</strong> (<em>3d array</em>) – labelled image with dimension RxHxW where R is for rois</p></li>
+<li><p><strong>channels</strong> (<em>str</em><em> or </em><em>list of str</em>) – name(s) of channels to analyze</p></li>
+<li><p><strong>min_time</strong> (<em>int</em>) – first time point to consider</p></li>
+<li><p><strong>max_time</strong> (<em>int</em>) – last time point to consider</p></li>
+<li><p><strong>step</strong> (<em>int</em>) – step between time points</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>signal</strong> – signal array with dimensions TxSxCxR where
+T=time, S=splits, C=channels, R=rois</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>4d xarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splitmask.splitmask.nan_labels">
+<span class="sig-prename descclassname"><span class="pre">splitmask.splitmask.</span></span><span class="sig-name descname"><span class="pre">nan_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">im_label</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splitmask.splitmask.nan_labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a label image where background is set to nan for transparency</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splitmask.splitmask.plot_sectors">
+<span class="sig-prename descclassname"><span class="pre">splitmask.splitmask.</span></span><span class="sig-name descname"><span class="pre">plot_sectors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sectors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">im_cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splitmask.splitmask.plot_sectors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot image and overlayed sectors with a given colormap</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> (<em>dataset object</em>) – image to be plotted</p></li>
+<li><p><strong>sectors</strong> (<em>3d array</em>) – labelled image of sectors RxHxW, first dimension can contains multiple rois</p></li>
+<li><p><strong>channel</strong> (<em>str</em>) – name of channel to plot</p></li>
+<li><p><strong>time</strong> (<em>int</em>) – frame to plot</p></li>
+<li><p><strong>roi</strong> (<em>int</em>) – index of roi to plot</p></li>
+<li><p><strong>cmap</strong> (<em>Matplotlib colormap</em>) – colormap for split mask</p></li>
+<li><p><strong>im_cmap</strong> (<em>Matplotlib colormap</em>) – colormap for image</p></li>
+<li><p><strong>ax</strong> (<em>Matplotlib axis</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>fig</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Matplotlib figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splitmask.splitmask.plot_signals">
+<span class="sig-prename descclassname"><span class="pre">splitmask.splitmask.</span></span><span class="sig-name descname"><span class="pre">plot_signals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_array</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splitmask.splitmask.plot_signals" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot extracted signal with specific colormap</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>4d xarray</em>) – signal array with dimensions TxSxCxR where
+T=time, S=splits, C=channels, R=rois</p></li>
+<li><p><strong>color_array</strong> (<em>2d array</em>) – N x 4 array of RGBA colors where N &gt;= sectors</p></li>
+<li><p><strong>ax</strong> (<em>Matplotlib axis</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>fig</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Matplotlib figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splitmask.splitmask.save_labelled_roi">
+<span class="sig-prename descclassname"><span class="pre">splitmask.splitmask.</span></span><span class="sig-name descname"><span class="pre">save_labelled_roi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roi_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roi_im</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splitmask.splitmask.save_labelled_roi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save an image of the labelled roi</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_path</strong> (<em>str of Path</em>) – </p></li>
+<li><p><strong>roi_path</strong> (<em>str</em>) – path to roi image</p></li>
+<li><p><strong>= 2d array</strong> (<em>roi_im</em>) – image containing roi</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="splitmask.splitmask.save_signal">
+<span class="sig-prename descclassname"><span class="pre">splitmask.splitmask.</span></span><span class="sig-name descname"><span class="pre">save_signal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mycsv.csv'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#splitmask.splitmask.save_signal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the sector signal in a CSV file with a given name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal</strong> (<em>4d xarray</em>) – signal array with dimensions TxSxCxR where
+T=time, S=splits, C=channels, R=rois</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – file name for export (should end in .csv)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-splitmask">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-splitmask" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "guiwitz/splitmask",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs/source"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../../notebooks/interactive.html" title="previous page">Interactive plotting</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

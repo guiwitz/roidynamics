@@ -1,0 +1,378 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Interactive plotting &#8212; splitmask</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="splitmask package" href="../docs/source/splitmask.html" />
+    <link rel="prev" title="Multiple rois" href="multi_roi.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">splitmask</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../README.html">
+   splitmask
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Documentation
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intensity_by_sector.html">
+   Measure intensity vs. time in angular or concentric regions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multi_roi.html">
+   Multiple rois
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Interactive plotting
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Reference
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../docs/source/splitmask.html">
+   splitmask package
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/notebooks/interactive.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/guiwitz/splitmask"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/guiwitz/splitmask/master?urlpath=lab/tree/notebooks/interactive.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/guiwitz/splitmask/blob/master/notebooks/interactive.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <section id="interactive-plotting">
+<h1>Interactive plotting<a class="headerlink" href="#interactive-plotting" title="Permalink to this headline">¶</a></h1>
+<p>When working within a notebook, you can use the interactive version of Matplotlib combined with the <code class="docutils literal notranslate"><span class="pre">ipywidgets</span></code> package to create interactive animations of the analysis. Here we reproduce the analyis shown in the <span class="xref myst">main documentation</span> and then create such an interactive plot.</p>
+<p>The first important step is to activate the interactive version of Matplotlib:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> widget
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">skimage.io</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">ListedColormap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="kn">from</span> <span class="nn">microfilm.dataset</span> <span class="kn">import</span> <span class="n">MultipageTIFF</span>
+<span class="kn">import</span> <span class="nn">microfilm.microplot</span>
+<span class="kn">from</span> <span class="nn">splitmask</span> <span class="kn">import</span> <span class="n">splitmask</span>
+
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">ipw</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we run the main analysis as usual:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">image_path</span> <span class="o">=</span> <span class="s1">&#39;../splitmask/tests/test_folders/test_multipage_good/&#39;</span>
+<span class="n">roi_path</span> <span class="o">=</span> <span class="s1">&#39;../splitmask//tests/test_folders/test_multipage_good/roi.bmp&#39;</span>
+
+<span class="n">image</span> <span class="o">=</span> <span class="n">MultipageTIFF</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+<span class="n">roi</span> <span class="o">=</span> <span class="n">skimage</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">roi_path</span><span class="p">)</span>
+
+<span class="n">cm</span> <span class="o">=</span> <span class="n">splitmask</span><span class="o">.</span><span class="n">get_roi_cm</span><span class="p">(</span><span class="n">roi_im</span><span class="o">=</span><span class="n">roi</span><span class="p">)</span>
+
+<span class="n">im_np</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">load_frame</span><span class="p">(</span><span class="n">channel_name</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">channel_name</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">frame</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="n">angular_width</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">max_rad</span> <span class="o">=</span><span class="mi">50</span>
+<span class="n">sector_labels</span> <span class="o">=</span> <span class="n">splitmask</span><span class="o">.</span><span class="n">create_sector_mask</span><span class="p">(</span><span class="n">center</span><span class="o">=</span><span class="n">cm</span><span class="p">,</span> <span class="n">im_dims</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">dims</span><span class="p">,</span>
+                                                     <span class="n">angular_width</span><span class="o">=</span><span class="n">angular_width</span><span class="p">,</span> <span class="n">max_rad</span><span class="o">=</span><span class="n">max_rad</span><span class="p">)</span>
+<span class="n">colors_angle</span><span class="p">,</span> <span class="n">cmap_angle</span> <span class="o">=</span> <span class="n">splitmask</span><span class="o">.</span><span class="n">get_cmap_labels</span><span class="p">(</span><span class="n">sector_labels</span><span class="p">,</span> <span class="n">cmap_name</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+
+<span class="n">channel</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">channel_name</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">signal_angle</span> <span class="o">=</span> <span class="n">splitmask</span><span class="o">.</span><span class="n">measure_intensities</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">channels</span><span class="o">=</span><span class="n">channel</span><span class="p">,</span> 
+                                                     <span class="n">im_labels</span><span class="o">=</span><span class="n">sector_labels</span><span class="p">,</span><span class="n">max_time</span><span class="o">=</span><span class="mi">51</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we use the <code class="docutils literal notranslate"><span class="pre">interactive</span></code> function of <code class="docutils literal notranslate"><span class="pre">ipywidgets</span></code> to update the plot when moving a slider:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">splitmask</span><span class="o">.</span><span class="n">plot_sectors</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">sector_labels</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap_angle</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">channel</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">channel_name</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">splitmask</span><span class="o">.</span><span class="n">plot_signals</span><span class="p">(</span><span class="n">signal_angle</span><span class="p">,</span> <span class="n">color_array</span><span class="o">=</span><span class="n">colors_angle</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  
+<span class="n">time_line</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="n">signal_angle</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">signal_angle</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span><span class="s1">&#39;-r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">plot_sectors_time</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_images</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">load_frame</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">channel_name</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">t</span><span class="p">))</span> 
+    <span class="n">time_line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xdata</span><span class="p">([</span><span class="n">t</span><span class="p">,</span><span class="n">t</span><span class="p">])</span>
+    
+<span class="n">ipw</span><span class="o">.</span><span class="n">interactive</span><span class="p">(</span><span class="n">plot_sectors_time</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">ipw</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="n">image</span><span class="o">.</span><span class="n">max_time</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "9bfb617e341c47de850a7dae9661c441", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "9b6a73f78c5c4fc5b07198f38826653e", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+</section>
+
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"2314f199193f4baf8c4c8cf7318b35fd": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "2738efaecfcd45efb8206627bb77469a": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "2a5d96bfb7284cff9010c72e06bd47a0": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "2f75fe0914dd429fa5dbfea3c0094cb3": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "IntSliderModel", "state": {"description": "t", "layout": "IPY_MODEL_9760181117604444a7db844a6627e344", "max": 50, "style": "IPY_MODEL_4aaf8e81927845c3ba654503c944fbfd"}}, "43db0dc371714d0e86b79a6f234e25a3": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "4aaf8e81927845c3ba654503c944fbfd": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "SliderStyleModel", "state": {"description_width": ""}}, "73df194429e1430abd37a44bc0c40909": {"model_module": "jupyter-matplotlib", "model_module_version": "^0.9.0", "model_name": "ToolbarModel", "state": {"layout": "IPY_MODEL_2314f199193f4baf8c4c8cf7318b35fd", "toolitems": [["Home", "Reset original view", "home", "home"], ["Back", "Back to previous view", "arrow-left", "back"], ["Forward", "Forward to next view", "arrow-right", "forward"], ["Pan", "Left button pans, Right button zooms\nx/y fixes axis, CTRL fixes aspect", "arrows", "pan"], ["Zoom", "Zoom to rectangle\nx/y fixes axis, CTRL fixes aspect", "square-o", "zoom"], ["Download", "Download plot", "floppy-o", "save_figure"]]}}, "7506e6dc4b804324bc33483d9a6d1bb3": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_2738efaecfcd45efb8206627bb77469a"}}, "9760181117604444a7db844a6627e344": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "model_name": "LayoutModel", "state": {}}, "9b6a73f78c5c4fc5b07198f38826653e": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "model_name": "VBoxModel", "state": {"_dom_classes": ["widget-interact"], "children": ["IPY_MODEL_2f75fe0914dd429fa5dbfea3c0094cb3", "IPY_MODEL_7506e6dc4b804324bc33483d9a6d1bb3"], "layout": "IPY_MODEL_2a5d96bfb7284cff9010c72e06bd47a0"}}, "9bfb617e341c47de850a7dae9661c441": {"model_module": "jupyter-matplotlib", "model_module_version": "^0.9.0", "model_name": "MPLCanvasModel", "state": {"_cursor": "default", "_figure_label": "Figure 1", "_height": 400, "_width": 800, "layout": "IPY_MODEL_43db0dc371714d0e86b79a6f234e25a3", "toolbar": "IPY_MODEL_73df194429e1430abd37a44bc0c40909", "toolbar_position": "left"}}}, "version_major": 2, "version_minor": 0}
+</script>
+
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "guiwitz/splitmask",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="multi_roi.html" title="previous page">Multiple rois</a>
+    <a class='right-next' id="next-link" href="../docs/source/splitmask.html" title="next page">splitmask package</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
