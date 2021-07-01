@@ -9,4 +9,4 @@ dependencies:
   - ipympl
   - pip:
     - tqdm
-    #- git+https://github.com/guiwitz/splitmask.git@master#egg=splitmask
+    - git+https://github.com/guiwitz/splitmask.git@master#egg=splitmask

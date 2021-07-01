@@ -1,3 +1,5 @@
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/guiwitz/splitmask/master?urlpath=lab)
+
 # splitmask
 
 Small Python package providing tools to analyze the dynamics of intensity in time-lapse microscopy images split into regions of specific geometries.  
