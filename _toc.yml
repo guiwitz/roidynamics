@@ -2,7 +2,9 @@
 
 - part: Documentation
   chapters:
-  - file: notebooks/Intensity_by_sector
+  - file: notebooks/intensity_by_sector
+  - file: notebooks/multi_roi
+  - file: notebooks/interactive
   
 
 - part: Reference
