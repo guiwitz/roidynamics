@@ -1,0 +1,12 @@
+name: splitmask
+channels:
+  - conda-forge
+dependencies:
+  - python>3.6
+  - jupyter
+  - jupyterlab
+  - pip
+  - ipympl
+  - pip:
+    - tqdm
+    #- git+https://github.com/guiwitz/splitmask.git@master#egg=splitmask

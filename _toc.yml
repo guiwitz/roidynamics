@@ -1,0 +1,10 @@
+- file: README
+
+- part: Documentation
+  chapters:
+  - file: notebooks/Intensity_by_sector
+  
+
+- part: Reference
+  chapters:
+  - file: docs/source/splitmask
