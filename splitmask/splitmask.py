@@ -165,7 +165,9 @@ def get_cmap_labels(im_label, cmap_name='cool'):
     """Create list of L colors where L is the number of labels in the image"""
 
     cmap_original = plt.get_cmap(cmap_name)
-    colors = cmap_original(np.linspace(0,1,im_label.max()))
+    colors = cmap_original(np.linspace(0,1,im_label.max()+1))
+    # background should be transparent
+    colors[0,-1] = 0
     cmap = matplotlib.colors.ListedColormap(colors)
     
     return colors, cmap
@@ -307,10 +309,10 @@ def plot_sectors(image, sectors, channel=None, time=0, roi=0, cmap=None, im_cmap
     if channel is None:
         channel = image.channel_name[0]
 
-    sector_labels_nan = nan_labels(sectors[roi])
+    #sector_labels_nan = nan_labels(sectors[roi])
 
     ax.imshow(image.load_frame(channel,time), cmap=im_cmap)
-    ax.imshow(sector_labels_nan, cmap=cmap, interpolation='none', alpha=0.5)
+    ax.imshow(sectors[roi], cmap=cmap, interpolation='none', alpha=0.5)
     
     fig.tight_layout()
     
