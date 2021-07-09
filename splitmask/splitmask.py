@@ -7,6 +7,7 @@ import xarray as xr
 import matplotlib
 import matplotlib.pyplot as plt
 import pandas as pd
+from microfilm.microplot import microshow
 
 
 def get_roi_cm(roi_path=None, roi_im=None):
@@ -161,13 +162,15 @@ def create_sector_mask(center, im_dims, angular_width=20, max_rad=50, ring_width
     return sector_labels
 
 
-def get_cmap_labels(im_label, cmap_name='cool'):
+def get_cmap_labels(im_label, cmap_name='cool', alpha=1):
     """Create list of L colors where L is the number of labels in the image"""
 
     cmap_original = plt.get_cmap(cmap_name)
     colors = cmap_original(np.linspace(0,1,im_label.max()+1))
-    # background should be transparent
-    colors[0,-1] = 0
+    # background should be transparent and black so that it disappears
+    # when used allone (transparent) or in composite mode
+    colors[0,:] = 0
+    colors[1::,-1] = alpha
     cmap = matplotlib.colors.ListedColormap(colors)
     
     return colors, cmap
@@ -301,22 +304,13 @@ def plot_sectors(image, sectors, channel=None, time=0, roi=0, cmap=None, im_cmap
     if im_cmap is None:
         im_cmap = plt.get_cmap('gray')
 
-    fig = None
-    if ax is None:
-        fig, ax = plt.subplots(figsize=(6,6))
-    else:
-        fig = ax.figure
     if channel is None:
         channel = image.channel_name[0]
 
-    #sector_labels_nan = nan_labels(sectors[roi])
-
-    ax.imshow(image.load_frame(channel,time), cmap=im_cmap)
-    ax.imshow(sectors[roi], cmap=cmap, interpolation='none', alpha=0.5)
+    im = image.load_frame(channel,time)
+    microim = microshow([im, sectors[roi]], cmaps=[im_cmap, cmap], proj_type='alpha')
     
-    fig.tight_layout()
-    
-    return fig
+    return microim
 
 def save_signal(signal, name='mycsv.csv', channels=None):
     """
