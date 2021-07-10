@@ -8,7 +8,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import pandas as pd
 from microfilm.microplot import microshow
-
+from microfilm import colorify
 
 def get_roi_cm(roi_path=None, roi_im=None):
     """
@@ -165,7 +165,8 @@ def create_sector_mask(center, im_dims, angular_width=20, max_rad=50, ring_width
 def get_cmap_labels(im_label, cmap_name='cool', alpha=1):
     """Create list of L colors where L is the number of labels in the image"""
 
-    cmap_original = plt.get_cmap(cmap_name)
+    #cmap_original = plt.get_cmap(cmap_name)
+    cmap_original = colorify.cmaps_def(cmap_name=cmap_name)
     colors = cmap_original(np.linspace(0,1,im_label.max()+1))
     # background should be transparent and black so that it disappears
     # when used allone (transparent) or in composite mode
@@ -273,7 +274,9 @@ def plot_signals(signal, channel=0, roi=0, color_array=None, ax=None):
     
     return fig
     
-def plot_sectors(image, sectors, channel=None, time=0, roi=0, cmap=None, im_cmap=None, ax=None):
+def plot_sectors(
+    image, sectors, channel=None, time=0, roi=None,
+    cmap=None, im_cmap='gray', alpha=0.5, show_labels=False):
     """
     Plot image and overlayed sectors with a given colormap
     
@@ -284,31 +287,51 @@ def plot_sectors(image, sectors, channel=None, time=0, roi=0, cmap=None, im_cmap
     sectors: 3d array
         labelled image of sectors RxHxW, first dimension can contains multiple rois
     channel: str
-        name of channel to plot
+        name of channel to plot, defaults to first channel
     time: int
-        frame to plot
+        frame to plot, defaults to t=0
     roi: int
-        index of roi to plot
-    cmap: Matplotlib colormap
-        colormap for split mask
+        index of roi to plot, if None, all are plotted
+    cmap: list or single Matplotlib colormap
+        colormap for each split mask corresponding to a roi
     im_cmap: Matplotlib colormap
         colormap for image
-    ax: Matplotlib axis
+    alpha: float
+        transparency of rois [0,1]
+    show_labels: bool
+        show roi indices as title, default False
 
     Returns
     -------
-    fig: Matplotlib figure
+    microim: Microimage object
     
     """
     
     if im_cmap is None:
         im_cmap = plt.get_cmap('gray')
+    if not isinstance(cmap, list):
+        cmap = list(cmap)
 
     if channel is None:
         channel = image.channel_name[0]
 
     im = image.load_frame(channel,time)
-    microim = microshow([im, sectors[roi]], cmaps=[im_cmap, cmap], proj_type='alpha')
+    if roi is not None:
+        sectors = sectors[[roi]]
+
+    # compute cmap for each roi sector map. cmaps are transparent outside the roi
+    num_roi = sectors.shape[0]
+    col_cmap = [get_cmap_labels(sectors[i], cmap_name=cmap[i]) for i in range(num_roi)]
+    cmaps = [x[1] for x in col_cmap]
+    
+    # creata an image by alpha superposing each mask on top of image
+    # as masks are transparent outside roi, the underlying image doesn't
+    # become increasingly opaque
+    microim = microshow(
+        images=[im, *sectors], cmaps=[im_cmap, *cmaps],
+        proj_type='alpha', alpha=alpha,
+        channel_names=['image']+[str(i) for i in range(num_roi)],
+        channel_label_show=show_labels)
     
     return microim
 
