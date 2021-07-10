@@ -161,6 +161,28 @@ def create_sector_mask(center, im_dims, angular_width=20, max_rad=50, ring_width
 
     return sector_labels
 
+def roi_reorder(sectors, new_order):
+    """
+    Given a roi with dimensions RxWxH where R are rois,
+    reorder the roi order.
+
+    Parameters
+    ----------
+    sectors : 3D array
+        numpy array with dimensions RxHxW where R=roi,
+        H=height, W=width
+    new_order : list
+        list of indices in correct order
+
+    Returns
+    -------
+    reordered: 3D array
+        numpy array with dimensions RxHxW
+        with reorders rois
+    """
+
+    reordered = sectors[new_order,:,:]
+    return reordered
 
 def get_cmap_labels(im_label, cmap_name='cool', alpha=1):
     """Create list of L colors where L is the number of labels in the image"""
