@@ -314,6 +314,9 @@ def plot_sectors(
     
     if im_cmap is None:
         im_cmap = plt.get_cmap('gray')
+    
+    if cmap is None:
+        cmap = ['viridis' for x in range(sectors.shape[0])]
     if not isinstance(cmap, list):
         cmap = [cmap]
 
