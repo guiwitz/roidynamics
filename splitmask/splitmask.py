@@ -243,7 +243,7 @@ def plot_signals(signal, channel=0, roi=0, color_array=None, ax=None):
     
     Parameters
     ----------
-    signal: 4d xarray
+    signal: 4d xarray or Numpy array with same dimension order
         signal array with dimensions TxSxCxR where
         T=time, S=splits, C=channels, R=rois
     color_array: 2d array
@@ -256,6 +256,9 @@ def plot_signals(signal, channel=0, roi=0, color_array=None, ax=None):
     
     """
 
+    if isinstance(signal, np.ndarray):
+        signal = xr.DataArray(signal, dims=("time", "sector", "channel", "roi"))
+        
     signal_sel = signal.sel(channel=channel, roi=roi)
     if ax is None:
         fig, ax = plt.subplots(figsize=(6,6))
@@ -276,7 +279,7 @@ def plot_signals(signal, channel=0, roi=0, color_array=None, ax=None):
     
 def plot_sectors(
     image, sectors, channel=None, time=0, roi=None,
-    cmap=None, im_cmap='gray', alpha=0.5, show_labels=False):
+    cmap=None, im_cmap='gray', alpha=0.5, show_labels=False, **micro_kwargs):
     """
     Plot image and overlayed sectors with a given colormap
     
@@ -292,7 +295,7 @@ def plot_sectors(
         frame to plot, defaults to t=0
     roi: int
         index of roi to plot, if None, all are plotted
-    cmap: list or single Matplotlib colormap
+    cmap: list or single Matplotlib colormap or colormap name str
         colormap for each split mask corresponding to a roi
     im_cmap: Matplotlib colormap
         colormap for image
@@ -300,6 +303,8 @@ def plot_sectors(
         transparency of rois [0,1]
     show_labels: bool
         show roi indices as title, default False
+    micro_kwargs: dict
+        additional parameters are passed to microshow
 
     Returns
     -------
@@ -310,7 +315,7 @@ def plot_sectors(
     if im_cmap is None:
         im_cmap = plt.get_cmap('gray')
     if not isinstance(cmap, list):
-        cmap = list(cmap)
+        cmap = [cmap]
 
     if channel is None:
         channel = image.channel_name[0]
@@ -321,8 +326,13 @@ def plot_sectors(
 
     # compute cmap for each roi sector map. cmaps are transparent outside the roi
     num_roi = sectors.shape[0]
-    col_cmap = [get_cmap_labels(sectors[i], cmap_name=cmap[i]) for i in range(num_roi)]
-    cmaps = [x[1] for x in col_cmap]
+    cmaps = []
+    for i in range(num_roi):
+        if isinstance(cmap[i], str):
+            temp_cmap = get_cmap_labels(sectors[i], cmap_name=cmap[i])
+            cmaps.append(temp_cmap[1])
+        else:
+            cmaps.append(cmap[i])
     
     # creata an image by alpha superposing each mask on top of image
     # as masks are transparent outside roi, the underlying image doesn't
@@ -331,7 +341,7 @@ def plot_sectors(
         images=[im, *sectors], cmaps=[im_cmap, *cmaps],
         proj_type='alpha', alpha=alpha,
         channel_names=['image']+[str(i) for i in range(num_roi)],
-        channel_label_show=show_labels)
+        channel_label_show=show_labels, **micro_kwargs)
     
     return microim
 
