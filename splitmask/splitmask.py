@@ -206,6 +206,43 @@ def nan_labels(im_label):
     
     return im_label_nan
 
+def sub_time_lapse_generator(time_image, channels, min_time=0, max_time=None, step=1):
+    """
+    Create a frame generator for a dataset only for a subset of time frames.
+
+    Parameters
+    ----------
+    time_image: array or microfilm.dataset
+        should be a 3D TxHxW numpy array or any microfilm.dataset object
+    channels: str or list of str
+        name(s) of channels to analyze
+    min_time: int
+        first time point to consider
+    max_time: int
+        last time point to consider
+    step: int
+        step between time points
+
+    Returns
+    -------
+    time_image_part: generator
+        frame generator
+    max_time: int
+        index of last frame
+
+    """
+
+    if max_time is None:
+        if isinstance(time_image, np.ndarray):
+            max_time = time_image.shape[0]
+        else:
+            max_time = time_image.max_time
+
+    time_gen = time_image.frame_generator(channel=channels)
+    time_image_part = itertools.islice(time_gen, min_time, max_time, step)
+
+    return time_image_part, max_time
+
 def measure_intensities(time_image, im_labels, channels, min_time=0, max_time=None, step=1):
     """
     Measure average intensity in a time-lapse image using a labelled image
@@ -233,14 +270,8 @@ def measure_intensities(time_image, im_labels, channels, min_time=0, max_time=No
 
     """
 
-    if max_time is None:
-        if isinstance(time_image, np.ndarray):
-            max_time = time_image.shape[0]
-        else:
-            max_time = time_image.max_time
-
-    time_gen = time_image.frame_generator(channel=channels)
-    time_image_part = itertools.islice(time_gen, min_time, max_time, step)
+    time_image_part, max_time = sub_time_lapse_generator(
+        time_image=time_image, channels=channels, min_time=min_time, max_time=max_time, step=step)
     
     num_channels = len(channels) if isinstance(channels, list) else 1
 
@@ -256,6 +287,74 @@ def measure_intensities(time_image, im_labels, channels, min_time=0, max_time=No
                 signal[t,:,0,r] = measures['mean_intensity']
     
     signal = xr.DataArray(signal, dims=("time", "sector", "channel", "roi"))
+    
+    return signal
+
+def scan_intensities(
+    time_image, channels, src, dst, min_time=0, max_time=None, step=1, linewidth=1,
+    reduce_func=np.mean, line_kwargs={'mode':'reflect'}):
+    """
+    Measure intensity along a line from scr to dst with a thickness of linewidth
+    for a given channel(s) and time-frames.
+
+    Parameters
+    ----------
+    time_image: array or microfilm.dataset
+        should be a 3D TxHxW numpy array or any microfilm.dataset object
+    channels: str or list of str
+        name(s) of channels to analyze
+    src: array_like, shape (2, )
+        The coordinates of the start point of the scan line.
+    dst: array_like, shape (2, )
+        The coordinates of the end point of the scan line. The destination point
+        is included in the profile, in contrast to standard numpy indexing.
+    min_time: int
+        first time point to consider
+    max_time: int
+        last time point to consider
+    step: int
+        step between time points
+    linewidth: int, optional
+        Width of the scan, perpendicular to the line
+    reduce_func: callable, optional
+        Function used to calculate the aggregation of pixel values perpendicular
+        to the profile_line direction when linewidth > 1. If set to None the unreduced array will be returned.
+    line_kwargs: dict
+        Keyword arguments passed to skimage.measure.profile_line
+
+    Returns
+    -------
+    signal: 3d xarray
+        signal array with dimensions LxTxC where
+        C=channels, T=frames, L=line length
+
+    """
+
+    if line_kwargs is None:
+        line_kwargs = {}
+
+    time_image_part, max_time = sub_time_lapse_generator(
+        time_image=time_image, channels=channels, min_time=min_time, max_time=max_time, step=step)
+    
+    num_channels = len(channels) if isinstance(channels, list) else 1
+
+    scan0 = skimage.measure.profile_line(
+        image=time_image.load_frame(channel_name=time_image.channel_name[0], frame=0), 
+        src=src, dst=dst, linewidth=linewidth, reduce_func=reduce_func, **line_kwargs)
+
+    signal = np.zeros((num_channels, len(range(min_time, max_time, step)), len(scan0)))
+
+    for t, im_np in enumerate(time_image_part):
+
+        scan = skimage.measure.profile_line(
+            image=im_np, src=src, dst=dst, linewidth=linewidth, reduce_func=reduce_func, **line_kwargs)
+
+        if scan.ndim == 2:
+            signal[:,t,:] = np.swapaxes(scan, 0, 1)
+        else:
+            signal[0,t,:] = np.swapaxes(scan, 0, 1)
+    
+    signal = xr.DataArray(signal, dims=("channel", "time", "profile"))
     
     return signal
 
