@@ -5,6 +5,7 @@
   - file: notebooks/intensity_by_sector
   - file: notebooks/multi_roi
   - file: notebooks/interactive
+  - file: notebooks/box_kymograph
   
 
 - part: Reference
