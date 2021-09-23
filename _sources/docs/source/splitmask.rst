@@ -12,6 +12,14 @@ splitmask.splitmask module
    :undoc-members:
    :show-inheritance:
 
+splitmask.utils module
+----------------------
+
+.. automodule:: splitmask.utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 
