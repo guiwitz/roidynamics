@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from microfilm.microplot import microshow
 from microfilm import colorify
+from .utils import create_rectangle
 
 def get_roi_cm(roi_path=None, roi_im=None):
     """
@@ -291,7 +292,7 @@ def measure_intensities(time_image, im_labels, channels, min_time=0, max_time=No
     return signal
 
 def scan_intensities(
-    time_image, channels, src, dst, min_time=0, max_time=None, step=1, linewidth=1,
+    time_image, channels, src, dst, min_time=0, max_time=None, step=1, box_width=1,
     reduce_func=np.mean, line_kwargs={'mode':'reflect'}):
     """
     Measure intensity along a line from scr to dst with a thickness of linewidth
@@ -314,7 +315,7 @@ def scan_intensities(
         last time point to consider
     step: int
         step between time points
-    linewidth: int, optional
+    box_width: int, optional
         Width of the scan, perpendicular to the line
     reduce_func: callable, optional
         Function used to calculate the aggregation of pixel values perpendicular
@@ -327,11 +328,16 @@ def scan_intensities(
     signal: 3d xarray
         signal array with dimensions LxTxC where
         C=channels, T=frames, L=line length
+    rectangle: 2d array
+        coordinates of the box
 
     """
 
     if line_kwargs is None:
         line_kwargs = {}
+
+    # compute box for plotting
+    rectangle = create_rectangle(src, dst, box_width)
 
     time_image_part, max_time = sub_time_lapse_generator(
         time_image=time_image, channels=channels, min_time=min_time, max_time=max_time, step=step)
@@ -340,14 +346,14 @@ def scan_intensities(
 
     scan0 = skimage.measure.profile_line(
         image=time_image.load_frame(channel_name=time_image.channel_name[0], frame=0), 
-        src=src, dst=dst, linewidth=linewidth, reduce_func=reduce_func, **line_kwargs)
+        src=src, dst=dst, linewidth=box_width, reduce_func=reduce_func, **line_kwargs)
 
     signal = np.zeros((num_channels, len(range(min_time, max_time, step)), len(scan0)))
 
     for t, im_np in enumerate(time_image_part):
 
         scan = skimage.measure.profile_line(
-            image=im_np, src=src, dst=dst, linewidth=linewidth, reduce_func=reduce_func, **line_kwargs)
+            image=im_np, src=src, dst=dst, linewidth=box_width, reduce_func=reduce_func, **line_kwargs)
 
         if scan.ndim == 2:
             signal[:,t,:] = np.swapaxes(scan, 0, 1)
@@ -356,7 +362,7 @@ def scan_intensities(
     
     signal = xr.DataArray(signal, dims=("channel", "time", "profile"))
     
-    return signal
+    return signal, rectangle
 
 def plot_signals(signal, channel=0, roi=0, color_array=None, ax=None):
     """
