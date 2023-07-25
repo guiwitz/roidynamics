@@ -1,10 +1,57 @@
+# https://peps.python.org/pep-0517/
 [build-system]
-requires = [
-    "setuptools>=42",
-    "wheel",
-    "setuptools_scm[toml]>=6.0"
-]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
 
 [tool.setuptools_scm]
 write_to = "splitmask/version.py"
+
+# https://peps.python.org/pep-0621/
+[project]
+name = "splitmask"
+description = "Time-evolution analysis of image intensity under specific mask geometries"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "BSD 3-Clause License" }
+authors = [
+    { email = "guillaume.witz@unibe.ch", name = "Guillaume Witz" },
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: BSD License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX",
+    "Operating System :: Unix",
+    "Operating System :: MacOS"
+]
+dynamic = ["version"]
+dependencies = [
+    "numpy",
+    "scikit-image",
+    "matplotlib",
+    "imageio",
+    "imageio-ffmpeg",
+    "microfilm",
+    "pandas"
+]
+
+[tool.hatch.version]
+source = "vcs"
+
+# extras
+# https://peps.python.org/pep-0621/#dependencies-optional-dependencies
+[project.optional-dependencies]
+test = ["pytest>=6.0"]
+interactive = ["jupyterlab", "ipywidgets"]
+
+[project.urls]
+homepage = "https://github.com/guiwitz/splitmask"
+repository = "https://github.com/guiwitz/splitmask"

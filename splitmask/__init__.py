@@ -1,7 +1,7 @@
-from pkg_resources import get_distribution, DistributionNotFound
+"""pymicrofluidics is a python package that allows you to create create complex microfluidics designs."""
+from importlib.metadata import PackageNotFoundError, version
 
 try:
-    __version__ = get_distribution("microfilm").version
-except DistributionNotFound:
-    # package is not installed
-    pass
+    __version__ = version("splitmask")
+except PackageNotFoundError:
+    __version__ = "uninstalled"
