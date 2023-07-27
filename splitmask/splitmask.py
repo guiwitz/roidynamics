@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from microfilm.microplot import microshow
 from microfilm import colorify
+from microfilm.dataset import Nparray
 from .utils import create_rectangle
 
 def get_roi_cm(roi_path=None, roi_im=None):
@@ -48,7 +49,7 @@ def save_labelled_roi(file_path, roi_path=None, roi_im=None):
 
     Parameters
     ----------
-    file_path: str of Path
+    file_path: str or Path
     roi_path: str
         path to roi image
     roi_im = 2d array
@@ -93,7 +94,10 @@ def create_concentric_mask(center, im_dims, sector_width=10, num_sectors=10):
     """
     
     if isinstance(center, list):
-        center = np.array([center])
+        if isinstance(center[0], list):
+            center = np.array(center)
+        else:
+            center = np.array([center])
 
     yy, xx = np.meshgrid(np.arange(im_dims[1]),np.arange(im_dims[0]))
     
@@ -141,7 +145,10 @@ def create_sector_mask(center, im_dims, angular_width=20, max_rad=50, ring_width
     """
 
     if isinstance(center, list):
-        center = np.array([center])
+        if isinstance(center[0], list):
+            center = np.array(center)
+        else:
+            center = np.array([center])
 
     yy, xx = np.meshgrid(np.arange(im_dims[1]),np.arange(im_dims[0]))
 
@@ -233,11 +240,11 @@ def sub_time_lapse_generator(time_image, channels, min_time=0, max_time=None, st
 
     """
 
+    if isinstance(time_image, np.ndarray):
+        time_image = Nparray(time_image)
+    
     if max_time is None:
-        if isinstance(time_image, np.ndarray):
-            max_time = time_image.shape[0]
-        else:
-            max_time = time_image.max_time
+        max_time = time_image.max_time
 
     time_gen = time_image.frame_generator(channel=channels)
     time_image_part = itertools.islice(time_gen, min_time, max_time, step)
@@ -251,7 +258,7 @@ def measure_intensities(time_image, im_labels, channels, min_time=0, max_time=No
     Parameters
     ----------
     time_image: array or microfilm.dataset
-        should be a 3D TxHxW numpy array or any microfilm.dataset object
+        should be a 3D CxTxHxW numpy array or any microfilm.dataset object
     im_labels: 3d array
         labelled image with dimension RxHxW where R is for rois
     channels: str or list of str
