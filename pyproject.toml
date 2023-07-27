@@ -39,7 +39,7 @@ dependencies = [
     "matplotlib",
     "imageio",
     "imageio-ffmpeg",
-    "microfilm",
+    "microfilm[multipage]",
     "pandas"
 ]
 
