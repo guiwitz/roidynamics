@@ -28,7 +28,7 @@ jobs:
     # Compile the docs
     - name: Compile sphinx
       run: |
-        $CONDA/bin/sphinx-apidoc -o docs/source splitmask/
+        $CONDA/bin/sphinx-apidoc -o docs/source roidynamics/
 
     # Build the book
     - name: Build the book

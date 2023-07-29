@@ -1,4 +1,4 @@
-name: splitmask
+name: roidynamics
 channels:
   - conda-forge
 dependencies:
@@ -9,4 +9,4 @@ dependencies:
   - ipympl
   - pip:
     - tqdm
-    - git+https://github.com/guiwitz/splitmask.git@master#egg=splitmask
+    - roidynamics
