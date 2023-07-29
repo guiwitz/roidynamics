@@ -1,14 +1,14 @@
 from pathlib import Path
 from microfilm.dataset import MultipageTIFF
 import skimage
-from splitmask import splitmask
+from roidynamics import splitmask
 import numpy as np
 
-image_path = Path('splitmask/tests/test_folders/test_multipage_good/')
-roi_path = Path('splitmask/tests/test_folders/test_multipage_good/roi.bmp')
-multi_roi_path = Path('splitmask/tests/test_folders/test_multipage_good/multiroi.bmp')
-concentric_path = Path('splitmask/tests/test_folders/concentric_mask_w4_n3.tif')
-concentric_path2 = Path('splitmask/tests/test_folders/concentric_mask_w4_n3_b.tif')
+image_path = Path('roidynamics/tests/test_folders/test_multipage_good/')
+roi_path = Path('roidynamics/tests/test_folders/test_multipage_good/roi.bmp')
+multi_roi_path = Path('roidynamics/tests/test_folders/test_multipage_good/multiroi.bmp')
+concentric_path = Path('roidynamics/tests/test_folders/concentric_mask_w4_n3.tif')
+concentric_path2 = Path('roidynamics/tests/test_folders/concentric_mask_w4_n3_b.tif')
 
 
 image = MultipageTIFF(image_path)

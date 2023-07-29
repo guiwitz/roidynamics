@@ -2,6 +2,6 @@
 from importlib.metadata import PackageNotFoundError, version
 
 try:
-    __version__ = version("splitmask")
+    __version__ = version("roidynamics")
 except PackageNotFoundError:
     __version__ = "uninstalled"

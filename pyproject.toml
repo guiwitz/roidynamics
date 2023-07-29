@@ -4,11 +4,11 @@ requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
 
 [tool.setuptools_scm]
-write_to = "splitmask/version.py"
+write_to = "roidynamics/version.py"
 
 # https://peps.python.org/pep-0621/
 [project]
-name = "splitmask"
+name = "roidynamics"
 description = "Time-evolution analysis of image intensity under specific mask geometries"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -53,5 +53,5 @@ test = ["pytest>=6.0"]
 interactive = ["jupyterlab", "ipywidgets"]
 
 [project.urls]
-homepage = "https://github.com/guiwitz/splitmask"
-repository = "https://github.com/guiwitz/splitmask"
+homepage = "https://github.com/guiwitz/roidynamics"
+repository = "https://github.com/guiwitz/roidynamics"

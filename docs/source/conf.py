@@ -17,8 +17,8 @@ sys.path.insert(0, os.path.abspath('../..'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'splitmaks'
-copyright = '2021, Guillaume Witz'
+project = 'roidynamics'
+copyright = '2023, Guillaume Witz'
 author = 'Guillaume Witz'
 
 
